@@ -1,5 +1,3 @@
-require "protected_attributes" if ActiveRecord::VERSION::MAJOR >= 4
-
 class TranslationKey < ActiveRecord::Base
   has_many :translations, :class_name => 'TranslationText', :dependent => :destroy
 
@@ -7,8 +5,6 @@ class TranslationKey < ActiveRecord::Base
 
   validates_uniqueness_of :key
   validates_presence_of :key
-
-  attr_accessible :key, :translations, :translations_attributes
 
   before_save :normalize_newlines
 
